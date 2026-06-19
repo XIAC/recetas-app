@@ -15,7 +15,7 @@ def create_app() -> Flask:
         from app.models.receta_ingrediente import RecetaIngrediente
 
         db.create_all()
-
+        from app.views.reporte_graficas import ReporteCategoriaView
         from app.views import CategoriaView, IngredienteView
         from app.views.receta_view import RecetaModelView
         from app.views.reportes import ReporteSimpleView
@@ -41,5 +41,11 @@ def create_app() -> Flask:
             ReporteSimpleView, 
             "Reportes de recetas por categoria", 
             icon="fa-lemon-o", 
+            category="Reportes")
+        
+        appbuilder.add_view(
+            ReporteCategoriaView, 
+            "Graficas por categoria", 
+            icon="fa-bar-chart", 
             category="Reportes")
     return app
